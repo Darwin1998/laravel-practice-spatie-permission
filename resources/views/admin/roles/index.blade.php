@@ -25,8 +25,12 @@
 
                                         <td class="text-right">
                                             <div class="px-2">
-                                                <a href="" > Delete</a>
-                                                <a href=""> Edit</a>
+                                                <form action="{{ route('admin.roles.destroy', ['role' => $role->id ]) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"> DELETE </button>
+                                                </form>
+                                                <a href="{{ route('admin.roles.edit', ['role' => $role->id]) }}"> Edit</a>
                                             </div>
 
                                         </td>
@@ -36,8 +40,9 @@
 
                                 </tbody>
                               </table>
-                              {{ !! links()!!}}
+
                             </div>
+                            {{ $roles->links() }}
                           </div>
                         </div>
                       </div>
