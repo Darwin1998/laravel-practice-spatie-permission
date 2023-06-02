@@ -75,5 +75,7 @@ class RoleController extends Controller
             return back()->with('message', 'Permission revoked');
         }
 
+        return back()->with('message', 'Permission not existed');
+
     }
 }

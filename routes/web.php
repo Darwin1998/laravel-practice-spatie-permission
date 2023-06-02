@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +31,9 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::resource('/roles', RoleController::class);
         Route::post('/roles/{role}/permissions', [RoleController::class, 'assignPermission'])->name('roles.permission');
-        Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'revokePermission'])->name('roles.permission.revoke');
+        Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'removePermission'])->name('roles.permission.revoke');
         Route::resource('/permissions', PermissionController::class);
+        Route::resource('users', UserController::class);
 
     });
 
